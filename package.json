@@ -1,0 +1,30 @@
+{
+  "name": "adminpage",
+    "version": "1.0.1",
+    "main": "./dist/index.js",
+    "license": "MIT",
+    "scripts": {
+        "compile": "rm -rf js/ && tsc -m commonjs  -p ./tsconfig.json",
+        "lint:fix": "eslint --fix --ext .js src/core",
+        "lite": "lite-server  --ws --c bs-config.json",
+        "dev": " node --harmony ./dist/index.js",
+        "fix-memory-limit": "cross-env LIMIT=4096 increase-memory-limit",
+        "debug": "node --inspect-brk ./dist/index.js",
+        "start": "npm run compile && node --harmony -r dotenv/config ./dist/index.js " 
+    },
+  "dependencies": {
+    "@types/bcryptjs": "^2.4.2",
+    "@types/express": "^4.17.2",
+    "@types/graphql": "^14.5.0",
+    "@types/node": "^13.1.6",
+    "apollo-server-express": "^2.9.16",
+    "bcryptjs": "^2.4.3",
+    "express": "^4.17.1",
+    "graphql": "^14.5.8",
+    "reflect-metadata": "^0.1.13",
+    "ts-node": "^8.6.1",
+    "type-graphql": "^0.17.6",
+    "typeorm": "^0.2.22",
+    "typescript": "^3.7.4"
+  }
+}
