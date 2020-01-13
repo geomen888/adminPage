@@ -12,7 +12,6 @@ const client = new ApolloClient({
     uri: "http://localhost:9003/graphql",
 });
 
-
 ReactDOM.render(
     <ApolloProvider client={client}>
     <App />
