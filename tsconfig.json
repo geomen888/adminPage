@@ -1,24 +1,33 @@
 {
     "compilerOptions": {
-        "module": "commonjs",
         "target": "es2018",
-        "noImplicitAny": true,
+        "module": "commonjs",
         "moduleResolution": "node",
         "esModuleInterop": true,
         "sourceMap": true,
         "outDir": "dist",
+        "allowSyntheticDefaultImports": true,
+        "removeComments": true,
+        "strict": true,
+        "noImplicitAny": false,
+        "noImplicitReturns": true,
+        "noFallthroughCasesInSwitch": true,
+        "strictPropertyInitialization": false,
+        "resolveJsonModule": true,
+        "forceConsistentCasingInFileNames": true,
+        "types": ["node"],
         "baseUrl": ".",
-        "paths": {
-            "*": [
-                "node_modules/*",
-                "src/types/*"
-            ]
-        },
         "emitDecoratorMetadata": true,
         "experimentalDecorators": true,
         "lib": [
-            "es6"
-        ]
+            "es2017",
+            "es2018",
+            "esnext.asynciterable",
+            "dom",
+            "es6",
+            "es2015.promise",
+            "esnext"
+        ],
     },
     "include": [
         "src/**/*"
@@ -26,5 +35,5 @@
     "exclude": [
         "dist",
         "node_modules",
-      ]    
+    ]
 }

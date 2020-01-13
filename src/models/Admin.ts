@@ -1,15 +1,14 @@
-import {
-    Column,
+import { Column,
     Entity,
     OneToMany,
     PrimaryGeneratedColumn,
     BaseEntity
-} from 'typeorm';
+} from "typeorm";
 
 import { ObjectType, Field, ID } from "type-graphql";
 
 
-import Category from './Category';
+import Category from "./Category";
 
 @ObjectType()
 @Entity()
@@ -19,15 +18,15 @@ export default class Supervisor extends BaseEntity {
     id: number;
 
     @Field()
-    @Column()
+    @Column("text", { nullable: true })
     name: string;
 
     @Field()
-    @Column()
+    @Column("text", { nullable: true })
     age: number;
 
     @Field()
-    @Column()
+    @Column("text", { nullable: true })
     password: string;
 
 

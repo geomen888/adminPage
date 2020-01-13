@@ -1,2 +1,2 @@
-export { default as Supervisor } from './Admin';
-export { default as Category } from './Category';
+export { default as Supervisor } from "./Admin";
+export { default as Category } from "./Category";

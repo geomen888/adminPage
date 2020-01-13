@@ -1,12 +1,12 @@
 // Config that is common to more than one part of the app.
 
-import { PostgresConnectionOptions } from 'typeorm/driver/postgres/PostgresConnectionOptions';
+import { PostgresConnectionOptions } from "typeorm/driver/postgres/PostgresConnectionOptions";
 
-import { Supervisor, Category } from './models';
+import { Supervisor, Category } from "./models";
 
 const typeOrmConfig: PostgresConnectionOptions = {
     type: "postgres",
-    host: "localhost",
+    host: "salt.db.casinosql.com",
     port: 5432,
     username: "admin",
     password: "123456",

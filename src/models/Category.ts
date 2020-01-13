@@ -2,12 +2,11 @@ import {
     Column,
     Entity,
     ManyToOne, BaseEntity
-} from 'typeorm';
+} from "typeorm";
 
 import { ObjectType, Field } from "type-graphql";
+import Supervisor from "./Admin";
 
-
-import Supervisor from './Admin';
 @ObjectType()
 @Entity()
 export default class Category extends BaseEntity {
