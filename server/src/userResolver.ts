@@ -30,7 +30,7 @@ export class UserResolver {
   @Query(() => String)
   @UseMiddleware(isAuth)
   async Me(@Ctx() { payload }: MyContext) {
-    return `Your user id : ${payload!.userId}`;
+    return JSON.stringify({ id : payload!.userId });
   }
 
   @Mutation(() => Boolean)
@@ -71,7 +71,7 @@ export class UserResolver {
 
     return {
       accessToken: sign({ userId: admin.id }, "MySecretKey", {
-        expiresIn: "15m"
+        expiresIn: "30m"
       })
     };
   }
