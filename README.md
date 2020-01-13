@@ -3,13 +3,16 @@
 
 1. cd server 
 
-## Installation 
+# Installation 
 
 In the project directory, you can run:
 
+install dependencies:
+    $ yarn  
 
- $ yarn => install dependencies
- $ docker-compose up => for deploy PostgresQL
+for deploy PostgresQL:
+
+    $ docker-compose up
 
 To run in development mode:
 
@@ -22,7 +25,7 @@ Open [http://localhost:9003/graphql](http://localhost:9003/graphql) to view it i
 2. cd admin 
 
 In the project directory, you can run:
-## Installation
+# Installation
 
  $ yarn => install dependencies
 
