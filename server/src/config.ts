@@ -6,9 +6,9 @@ import { Supervisor, Category } from "./models";
 
 const typeOrmConfig: PostgresConnectionOptions = {
     type: "postgres",
-    host: "salt.db.casinosql.com",
+    host: "db.postgres",
     port: 5432,
-    username: "admin",
+    username: "typeormcasino",
     password: "123456",
     database: "typeormcasino",
     synchronize: true,

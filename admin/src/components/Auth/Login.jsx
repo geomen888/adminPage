@@ -24,15 +24,22 @@ const Emoji = props => (
     >
         {props.symbol}
     </span>
-)
+);
+
+  const Register = (props) =>  (<button type="button" onClick={() => props.setUser(true)} style={{
+                                    color: 'pink'
+                                }} disabled={props.loading}>
+                                    Doesn't have credentials yet,  pls register!
+                </button>)
 
 export default (props) => {
+
+   
     const onSubmit = R.curryN(3, async (fn, client, values) => {
         await sleep(300);
-
         console.info("login:onSubmit:fn:", fn);
-
-        const execMem = await fn({
+        try {
+                 const execMem = await fn({
             variables: {
                 ...values
             }
@@ -43,13 +50,22 @@ export default (props) => {
             client.writeData({ data: { isAuthenticated: true } })
         }
         window.alert(JSON.stringify(values, 0, 2));
+        } catch (error) {
+            console.error(error)
+        }
+       
     });
 
     return (<Mutation mutation={LOGIN_MUTATION}>
-        {(Login, { loading, error, called, client }) => (<Styles>
+        {(Login, { loading, error, called, client }) => {   
+          return (<Styles>
             <h1><Emoji label="flag" symbol="🏁" />Casino SignIn Form</h1>
-            {loading
-                ? <div>Loading</div>
+            {error ? <div>
+            <div>Server Error {error.message}</div>
+             <Register setUser={props.setUser} loading={loading} />
+            </div>
+           :  loading
+                ? (<div>Loading</div>)
                 : <Form
                     onSubmit={onSubmit(Login, client)}
                     validate={values => {
@@ -84,7 +100,6 @@ export default (props) => {
                                     </div>
                                 )}
                             </Field>
-                            {error && <div>Server Error</div>}
                             <div className="buttons">
                                 <button type="submit" disabled={submitting || loading}>
                                     Submit
@@ -96,18 +111,15 @@ export default (props) => {
                                 >
                                     Reset
             </button>
-                                <button type="button" onClick={() => props.setUser(true)} style={{
-                                    color: 'pink'
-                                }} disabled={loading}>
-                                    Doesn't have credentials yet,  pls register!
-                </button>
+                               <Register setUser={props.setUser} loading={loading} />
                             </div>
 
                             <pre>{JSON.stringify(values, 0, 2)}</pre>
                         </form>
                     )}
                 />}
-        </Styles>
-        )}
+          </Styles>)
+          }
+        }
     </Mutation>)
 }

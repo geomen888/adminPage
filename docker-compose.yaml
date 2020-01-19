@@ -1,0 +1,50 @@
+version: "2"
+services:
+  db.postgres:
+    container_name: db.postgres
+    image: postgres:10
+    environment:
+      - POSTGRES_USER=typeormcasino
+      - POSTGRES_PASSWORD=123456
+      - POSTGRES_DB=typeormcasino
+    ports:
+      - '5432:5432'
+    volumes:
+      - ./pgdata:/var/lib/postgresql/data
+    networks:
+      - casinonetwork
+  adminer:
+    image: "adminer"
+    restart: "always"
+    ports:
+      - "8080:8080"
+    container_name: adminer 
+  web-admin:
+    build:
+      context: ./admin
+      dockerfile: Dockerfile.dev
+    volumes:
+      - /app/node_modules
+      - ./admin:/app
+    ports:
+      - '3000:3000'
+    restart: on-failure
+    container_name: web-admin
+    networks:
+      - casinonetwork
+  graphql:
+    build:
+      context: ./server
+      dockerfile: Dockerfile.dev
+    ports:
+      - '9003:9003'
+    restart: on-failure
+    container_name: graphql
+    volumes:
+      - /app/node_modules # Inside the container, don't try to override this folder, just leave as is
+      - ./server:/app # Look at the server directory and copy everything into the app folder in the container
+    networks:
+      - casinonetwork
+networks:
+  casinonetwork:
+    driver: bridge      
